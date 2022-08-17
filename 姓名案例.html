@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>姓名案例</title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			姓: <input type="text" name="" id="" v-model="firstname" />
+			名: <input type="text" name="" id="" v-model="lastname" />
+			<h3>姓名: {{firstname}}-{{lastname}}</h3>
+		</div>
+		
+		<script type="text/javascript">
+			var app=new Vue({
+				el:'#app',
+				data(){
+					return{
+						firstname: '',
+						lastname: '',
+					}
+				},
+				
+			})
+		</script>
+	</body>
+</html>

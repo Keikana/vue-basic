@@ -1,0 +1,51 @@
+<!--
+ * @Author: Axiuxiu
+ * @Date: 2021-11-09 21:10:24
+ * @LastEditors: Axiuxiu
+ * @LastEditTime: 2021-11-10 17:06:10
+ * @Description: vue事件处理
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单事件绑定</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h2>欢迎来到{{place}} </h2>
+        <button v-on:click="showinfo1($event, 50)">提示信息</button>
+        <button v-on:click="showinfo2($event)">提示信息2</button>
+
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    place: '北京',
+                };
+            },
+            methods: {
+                showinfo1(event, x) {
+                    console.log(event.target.innerText);
+                    // alert('同学你好!'); 
+                    console.log(this); //此处的this是vm
+                    console.log(x);
+                },
+                showinfo2(e) {
+                    console.log(e.target.innerText);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

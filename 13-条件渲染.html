@@ -1,0 +1,55 @@
+<!--
+ * @Author: Axiuxiu
+ * @Date: 2021-12-08 22:28:07
+ * @LastEditors: Axiuxiu
+ * @LastEditTime: 2021-12-08 22:41:16
+ * @Description: 条件渲染
+ * 重新明确：若vm中的数据发生改变，则页面将会重新渲染
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条件渲染</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button v-on:click="n_add">n+1</button>
+
+        <div v-show="n==1">n==1</div>
+        <div v-show="n==2">n==2</div>
+        <div v-show="n==3">n==3</div>
+
+        <template v-if="n==1">
+            <div>这里</div>
+            <div>n==1</div>
+            <div>才显示</div>
+        </template>
+
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    n: 0,
+                }
+            },
+            methods: {
+                n_add() {
+                    this.n = this.n + 1;
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

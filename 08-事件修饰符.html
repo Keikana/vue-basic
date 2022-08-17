@@ -1,0 +1,107 @@
+<!--
+ * @Author: Axiuxiu
+ * @Date: 2021-11-09 21:44:12
+ * @LastEditors: Axiuxiu
+ * @LastEditTime: 2021-11-10 19:12:49
+ * @Description: vue事件修饰符
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Vue事件修饰符</title>
+	<script src="../js/vue.js"></script>
+	<style>
+		* {
+			margin-top: 10px;
+		}
+
+		.demo1 {
+			height: 50px;
+			background-color: bisque;
+		}
+
+		.box1 {
+			background-color: blue;
+		}
+
+		.box2 {
+			background-color: orange;
+		}
+
+		.list {
+			width: 100px;
+			height: 200px;
+			background-color: antiquewhite;
+			overflow: auto;
+		}
+
+		li {
+			height: 50px;
+		}
+	</style>
+</head>
+
+
+<body>
+	<div id="app">
+		<!-- .prevent阻止默认事件 -->
+		<a href="https://www.bilibili.com/" v-on:click.prevent="showInfo">链接</a>
+		<br>
+		<!-- .stop阻止事件冒泡 -->
+		<div class="demo1" v-on:click="showInfo">
+			<button v-on:click.stop="showInfo">点击</button>
+		</div>
+		<!-- 事件只触发一次:页面刷新之后重新计算 -->
+		<button v-on:click.once="showInfo">点击</button>
+		<button type="button" @click="showInfo($event)">点击</button>
+
+		<!-- 使用事件的捕获模式, 事件将从外到内触发 -->
+		<div id="" class="box1" v-on:click.capture="showMsg(1)">
+			div1
+			<div id="" class=" box2" v-on:click.capture="showMsg(2)">
+				div2
+			</div>
+		</div>
+
+		<!-- scroll是滚动条的滚动事件 wheel是鼠标滚轮的滚动事件 -->
+		<ul class="list" v-on:wheel="doWheel">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+		</ul>
+	</div>
+
+	<script>
+		
+		new Vue({
+			el: '#app',
+			methods: {
+				showInfo() {
+					alert('提示信息');
+				},
+				showMsg(msg) {
+					console.log(msg);
+				},
+
+				doScroll() {
+					console.log('scroll');
+				},
+				doWheel() {
+					console.log('wheel');
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>

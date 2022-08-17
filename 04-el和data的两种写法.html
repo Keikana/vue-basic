@@ -1,0 +1,41 @@
+<!--
+ * @Author: Axiuxiu
+ * @Date: 2021-11-09 18:05:06
+ * @LastEditors: Axiuxiu
+ * @LastEditTime: 2021-11-09 18:09:07
+ * @Description: el和data的两种写法
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>el与data</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>
+            你好, {{name}}
+        </h1>
+    </div>
+
+    <script>
+        Vue.config.productionTip = false;
+        const app = new Vue({
+            el: '#app',
+            data() {
+                console.log('@@@', this);
+                return {
+                    name: 'jack',
+                };
+            },
+        })
+    </script>
+</body>
+
+</html>

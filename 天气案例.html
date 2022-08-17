@@ -1,0 +1,52 @@
+<!--
+ * @Author: Axiuxiu
+ * @Date: 2021-11-10 22:47:33
+ * @LastEditors: Axiuxiu
+ * @LastEditTime: 2021-11-15 20:33:00
+ * @Description: 天气案例
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天气案例</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 使用计算属性 -->
+        <h2>今天天气很{{weather}} </h2>
+        <button v-on:click="doSwitch">切换属性</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    isHot: true,
+
+                }
+            },
+            methods: {
+                doSwitch() {
+                    this.isHot = !(this.isHot);
+                }
+            },
+            // 获取基于data需要计算的属性
+            computed: {
+                weather: {
+                    get() {
+                        return this.isHot ? '炎热' : '凉爽';
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

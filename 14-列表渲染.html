@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表渲染</title>
+
+    <script src="/js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h2>人员列表</h2>
+        <ul>
+            <li v-for="(p,index) in persons">
+                {{p}}--{{index}}
+            </li>
+        </ul>
+
+        <!-- 遍历指定次数 -->
+        <ul>
+            <li v-for="(val,index) in 10">
+                {{val}}==={{index}}
+            </li>
+        </ul>
+
+        <!-- 遍历对象 -->
+        <ul>
+            <li v-for="(val, key) in prices">
+                {{val}}--{{key}}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    persons: [
+                        {
+                            id: '001',
+                            name: '张三',
+                            age: 18,
+                        },
+                        {
+                            id: '001',
+                            name: '张三',
+                            age: 18,
+                        },
+                        {
+                            id: '001',
+                            name: '张三',
+                            age: 18,
+                        },
+                    ],
+                    prices: {
+                        banana: 12,
+                        apple: 15,
+                        grape: 20,
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

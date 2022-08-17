@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>挂载</title>
+
+    <script src="/js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h2 v-bind:style="styleObj">欢迎学习Vue</h2>
+        <button v-on:click="stop">停止更新透明度</button>
+
+    </div>
+
+    <script>
+        
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    styleObj: {
+                        opacity: 1,
+                    }
+                }
+            },
+            methods: {
+                stop(){
+                    // 清除计时器
+                    // clearInterval(this.timer);
+
+                    this.$destroy();
+                }
+            },
+            // 挂载完成后调用的函数
+            mounted() {
+                console.log('挂载完成，设置了一个定时器');
+                // 添加timer属性
+                this.timer = setInterval(() => {
+                    console.log('setInterval');
+                    
+                    this.styleObj.opacity -= 0.01;
+
+                    if (this.styleObj.opacity <= 0) {
+                        this.styleObj.opacity = 1;
+                    }
+                }, 16);
+            },
+            beforeDestroy () {
+                clearInterval(this.timer);
+            }
+        })
+    </script>
+</body>
+
+</html>

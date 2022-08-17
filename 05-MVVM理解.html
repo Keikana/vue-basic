@@ -1,0 +1,47 @@
+<!--
+ * @Author: Axiuxiu
+ * @Date: 2021-11-09 19:49:20
+ * @LastEditors: Axiuxiu
+ * @LastEditTime: 2021-11-09 20:16:54
+ * @Description: MVVM理解
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVVM理解</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- View区域 -->
+    <!-- view能看到vm的所有属性，包括系统预定义的属性 -->
+    <div id="app">
+        <h1>学校名称：{{name}} </h1>
+        <h1>学校地址：{{address}} </h1>
+        <h1>你好, {{$options}} </h1>
+    </div>
+
+    <script>
+        // viewmodel区域
+        const vm = new Vue({
+            el: '#app',
+            // model区域
+            // data中的属性将返回作为vm的属性
+            data() {
+                return {
+                    name: 'w3cschool',
+                    address: '北京',
+                };
+            },
+        });
+        console.log(vm);
+        console.log(Vue.version);
+    </script>
+</body>
+
+</html>

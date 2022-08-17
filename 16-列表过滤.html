@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表过滤</title>
+
+    <script src="/js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h2>人员列表</h2>
+        <input type="text" placeholder="输入过滤条件" v-model="keyword">
+        <ul>
+            <li v-for="(item,index) in filpersons">
+                {{item.name}}--{{item.age}}
+            </li>
+        </ul>
+        
+        <!-- 使用监视 -->
+        <h3>人员列表2</h3>
+        <ul>
+            <li v-for="(item,index) in filpersons2">
+                {{item.name}}--{{item.age}}
+            </li>
+        </ul>
+
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    keyword: '',
+                    persons: [
+                        { name: '马冬梅', age: 20 },
+                        { name: '周冬雨', age: 21 },
+                        { name: '周杰伦', age: 22 },
+                        { name: '温兆伦', age: 23 },
+                    ],
+                    filpersons2:[],
+                }
+            },
+            // 使用计算属性
+            computed: {
+                filpersons(){
+                    // 注意这里要使用箭头函数
+                    return this.persons.filter((item)=>{
+                        // console.log(this);
+                        return item.name.indexOf(this.keyword)!==-1;
+                    })
+                
+                },
+            },
+            watch: {
+                keyword:{
+                    immediate: true,
+
+                    handler(val){
+                        this.filpersons2=this.persons.filter((item)=>{
+                            return item.name.indexOf(val)!==-1;
+                        });
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

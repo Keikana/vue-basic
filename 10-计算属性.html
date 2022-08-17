@@ -1,0 +1,60 @@
+<!--
+ * @Author: Axiuxiu
+ * @Date: 2021-11-10 20:25:58
+ * @LastEditors: Axiuxiu
+ * @LastEditTime: 2021-11-10 22:46:22
+ * @Description: vue计算属性实例
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        姓：<input type="text" name="" id="" v-model="firstname">
+        <br>
+        名：<input type="text" name="" id="" v-model="lastname">
+        <br>
+        <input type="text" name="" id="" v-model="x">
+        <br>
+        全名：<span>{{fullname}} </span>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    firstname: '张',
+                    lastname: '三',
+                    x: '1',
+                };
+            },
+            computed: {
+                fullname: {
+                    // get只有在fullname初次访问和依赖项修改的时候被调用
+                    get() {
+                        console.log('get被调用了');
+                        return this.firstname + '-' + this.lastname;
+                    },
+                    // set函数编写要求：要引起计算时所依赖的数据发生变化
+                    set(val) {
+                        const arr = val.split('-');
+                        this.firstname = arr[0];
+                        this.lastname = arr[1];
+                    }
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

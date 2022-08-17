@@ -1,0 +1,55 @@
+<!--
+ * @Author: Axiuxiu
+ * @Date: 2021-11-09 20:02:58
+ * @LastEditors: Axiuxiu
+ * @LastEditTime: 2021-11-09 21:16:03
+ * @Description: 了解Object.defineProperty()方法
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>defineProperty方法</title>
+</head>
+
+<body>
+    <script>
+        let num = 18;
+        let person = {
+            name: '张三',
+            sex: '男',
+
+            func1: function () {
+                console.log('func1');
+            },
+
+            showself: function () {
+                console.log(this); //谁调用this就是谁
+            },
+
+            showthis() {
+                console.log(this);
+            }
+        }
+
+        // 参数：对象，属性名，属性描述符
+        Object.defineProperty(person, 'age', {
+            get: function () {
+                return num;
+            },
+            set: function (val) {
+                num = val;
+            },
+        })
+        // person.func1();
+        // person.showself();
+        // console.log(person);
+        person.showthis();
+    </script>
+</body>
+
+</html>

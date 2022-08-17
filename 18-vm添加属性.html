@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vm添加属性</title>
+
+    <script src="/js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button v-on:click="addSex">添加性别属性</button>
+        <br>
+        <span>
+            姓名：{{student.name}}
+        </span>
+        <br>
+        <span>
+            年龄：{{student.age}}
+        </span>
+        <br>
+        <span v-show="student.sex">
+            性别：{{student.sex}}
+        </span>
+        <br>
+        <button v-on:click="changeStudent">改变学生对象</button>
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    student: {
+                        name: '张三',
+                        age: 20,
+                        friends:[
+                            {name:'John', age: 32},
+                            {name:'Tom', age: 33},
+                            {name:'Kate', age: 35},
+                        ]
+                    }
+                }
+            },
+            methods: {
+                addSex(){
+                    this.$set(this.student, 'sex', '男');
+                },
+                changeStudent(){
+                    this.student={
+                        name:'李四',
+                        age: 200,
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

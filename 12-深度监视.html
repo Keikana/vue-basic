@@ -1,0 +1,81 @@
+<!--
+ * @Author: Axiuxiu
+ * @Date: 2021-11-15 20:53:33
+ * @LastEditors: Axiuxiu
+ * @LastEditTime: 2021-11-15 21:53:03
+ * @Description: vue深度监视
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深度监视</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h2>今天天气很 {{info}} </h2>
+        <button v-on:click="changeWeather">切换天气</button>
+
+        <h2>a的值是{{numbers.a}} </h2>
+        <button v-on:click="numbers.a++">a++</button>
+        <h2>b的值是{{numbers.b}} </h2>
+        <button v-on:click="numbers.a++">b++</button>
+
+        <h2 v-bind:class="arr">数组arr:{{arr}} </h2>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    isHot: true,
+                    numbers: {
+                        a: 1,
+                        b: 1,
+                    },
+                    arr: ['1', '2', '3'],
+                }
+            },
+            methods: {
+                changeWeather() {
+                    this.isHot = !(this.isHot);
+                }
+            },
+            computed: {
+                info: {
+                    get() {
+                        return this.isHot ? '炎热' : '凉爽';
+                    }
+                }
+            },
+            watch: {
+                isHot: {
+                    handler(newVal, oldVal) {
+                        console.log('isHot changed. new: ' + newVal + ', old: ' + oldVal);
+                    }
+                },
+                // 多级监视的结构
+                // 'numbers.a': {
+                //     handler(newVal, oldVal) {
+                //         console.log('a changed. new: ' + newVal + ', old: ' + oldVal);
+                //     }
+                // },
+                numbers: {
+                    deep: true,//设置深度监视
+                    handler(newVal, oldVal) {
+                        console.log('numbers changed.');
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
